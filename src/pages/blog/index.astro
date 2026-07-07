@@ -1,0 +1,774 @@
+---
+const articles = [
+  {
+    category: "Antincendio",
+    date: "10 luglio 2026",
+    title: "Manutenzione degli impianti antincendio",
+    description:
+      "Perché i controlli periodici sono fondamentali per mantenere efficienti e sicuri gli impianti antincendio.",
+    slug: "#",
+  },
+  {
+    category: "Impianti idrici",
+    date: "4 luglio 2026",
+    title: "Come mantenere efficiente un gruppo di pressurizzazione",
+    description:
+      "Controlli, manutenzione e accorgimenti utili per prevenire guasti e interruzioni del servizio.",
+    slug: "#",
+  },
+  {
+    category: "Motori elettrici",
+    date: "28 giugno 2026",
+    title: "Quando è necessario riavvolgere un motore elettrico",
+    description:
+      "I principali segnali di usura e le valutazioni da effettuare prima della riparazione.",
+    slug: "#",
+  },
+];
+
+const featuredArticle = articles[0];
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="description"
+      content="Notizie, approfondimenti e consigli tecnici di Elettromotor su impianti, manutenzione e sicurezza."
+    />
+
+    <title>Blog | Elettromotor</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container navigation">
+        <a class="logo" href="/" aria-label="Elettromotor Home">
+          <img
+            src="/images/logo-elettromotor.png"
+            alt="Elettromotor"
+            class="logo-image"
+          />
+
+          <span class="logo-text">
+            <strong>ELETTROMOTOR</strong>
+            <small>Tecnologia e sicurezza</small>
+          </span>
+        </a>
+
+        <nav class="menu" aria-label="Navigazione principale">
+          <a href="/#azienda">Azienda</a>
+          <a href="/#servizi">Servizi</a>
+          <a href="/#manutenzione">Manutenzione</a>
+          <a href="/blog/" class="active">Blog</a>
+          <a href="/#contatti">Contatti</a>
+        </nav>
+
+        <a class="header-button" href="/#contatti">
+          Richiedi un sopralluogo
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="blog-hero">
+        <div class="container blog-hero-content">
+          <span class="eyebrow">Elettromotor Journal</span>
+
+          <h1>
+            Notizie e approfondimenti
+            <span>dal mondo degli impianti.</span>
+          </h1>
+
+          <p>
+            Consigli tecnici, aggiornamenti e informazioni utili per mantenere
+            gli impianti efficienti, sicuri e affidabili.
+          </p>
+        </div>
+      </section>
+
+      <section class="featured">
+        <div class="container">
+          <a class="featured-card" href={featuredArticle.slug}>
+            <div class="featured-visual">
+              <div class="featured-symbol">
+                <span>E</span>
+              </div>
+
+              <span class="featured-label">In evidenza</span>
+            </div>
+
+            <div class="featured-content">
+              <div class="article-meta">
+                <span>{featuredArticle.category}</span>
+                <time>{featuredArticle.date}</time>
+              </div>
+
+              <h2>{featuredArticle.title}</h2>
+
+              <p>{featuredArticle.description}</p>
+
+              <span class="read-more">
+                Leggi l’articolo
+                <strong>→</strong>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="articles-section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="section-label">Ultimi articoli</span>
+              <h2>Approfondimenti e consigli tecnici.</h2>
+            </div>
+
+            <p>
+              Contenuti dedicati alla manutenzione, alla sicurezza e alla
+              corretta gestione degli impianti.
+            </p>
+          </div>
+
+          <div class="articles-grid">
+            {
+              articles.map((article, index) => (
+                <article class="article-card">
+                  <a href={article.slug}>
+                    <div class={`article-image article-image-${index + 1}`}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                    </div>
+
+                    <div class="article-content">
+                      <div class="article-meta">
+                        <span>{article.category}</span>
+                        <time>{article.date}</time>
+                      </div>
+
+                      <h3>{article.title}</h3>
+
+                      <p>{article.description}</p>
+
+                      <span class="read-more">
+                        Leggi l’articolo
+                        <strong>→</strong>
+                      </span>
+                    </div>
+                  </a>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="newsletter">
+        <div class="container newsletter-box">
+          <div>
+            <span class="section-label light">Rimani aggiornato</span>
+
+            <h2>Novità, consigli e informazioni utili.</h2>
+
+            <p>
+              Segui il blog Elettromotor per conoscere le novità relative agli
+              impianti tecnologici, alla manutenzione e alla sicurezza.
+            </p>
+          </div>
+
+          <a class="button white" href="mailto:info@elettromotor.net">
+            Contattaci
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <a class="logo footer-logo" href="/">
+          <img
+            src="/images/logo-elettromotor.png"
+            alt="Elettromotor"
+            class="logo-image"
+          />
+
+          <span class="logo-text">
+            <strong>ELETTROMOTOR</strong>
+            <small>Tecnologia e sicurezza</small>
+          </span>
+        </a>
+
+        <p>© 2026 Elettromotor. Tutti i diritti riservati.</p>
+
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :root {
+    --navy: #07182e;
+    --navy-light: #102c4e;
+    --blue: #0878d1;
+    --cyan: #29b8ef;
+    --white: #ffffff;
+    --background: #f4f7fa;
+    --text: #182536;
+    --muted: #667385;
+    --border: #dbe3ea;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    color: var(--text);
+    background: var(--white);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  .container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+
+  .navigation {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .logo {
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-image {
+    width: 58px;
+    height: auto;
+    display: block;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-text strong {
+    color: var(--navy);
+    font-size: 18px;
+    letter-spacing: 0.7px;
+  }
+
+  .logo-text small {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .menu a {
+    padding: 30px 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .menu a:hover,
+  .menu a.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+
+  .header-button {
+    padding: 13px 20px;
+    color: var(--white);
+    background: var(--navy);
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .blog-hero {
+    padding: 105px 0 135px;
+    color: var(--white);
+    background:
+      radial-gradient(
+        circle at 80% 30%,
+        rgba(41, 184, 239, 0.25),
+        transparent 30%
+      ),
+      linear-gradient(135deg, var(--navy), #0a3d6b);
+  }
+
+  .blog-hero-content {
+    max-width: 930px;
+  }
+
+  .eyebrow,
+  .section-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+
+  .section-label {
+    color: var(--blue);
+  }
+
+  .section-label.light {
+    color: var(--cyan);
+  }
+
+  h1 {
+    max-width: 900px;
+    margin-bottom: 26px;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1;
+    letter-spacing: -3px;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--cyan);
+  }
+
+  .blog-hero p {
+    max-width: 680px;
+    margin-bottom: 0;
+    color: #cad8e7;
+    font-size: 19px;
+    line-height: 1.7;
+  }
+
+  .featured {
+    position: relative;
+    z-index: 2;
+    margin-top: -70px;
+    padding-bottom: 95px;
+  }
+
+  .featured-card {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    background: var(--white);
+    border-radius: 18px;
+    box-shadow: 0 25px 65px rgba(7, 24, 46, 0.18);
+  }
+
+  .featured-visual {
+    position: relative;
+    min-height: 430px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at 70% 25%,
+        rgba(41, 184, 239, 0.5),
+        transparent 25%
+      ),
+      linear-gradient(135deg, var(--blue), var(--navy));
+  }
+
+  .featured-visual::after {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border: 55px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+  }
+
+  .featured-symbol {
+    position: relative;
+    z-index: 2;
+    width: 145px;
+    height: 145px;
+    display: grid;
+    place-items: center;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+  }
+
+  .featured-symbol span {
+    font-size: 64px;
+    font-weight: 900;
+  }
+
+  .featured-label {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    padding: 9px 13px;
+    color: var(--navy);
+    background: var(--white);
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .featured-content {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .article-meta {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .article-meta span {
+    color: var(--blue);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .featured-content h2 {
+    margin-bottom: 20px;
+    color: var(--navy);
+    font-size: clamp(34px, 4vw, 50px);
+    line-height: 1.08;
+    letter-spacing: -1.7px;
+  }
+
+  .featured-content p {
+    margin-bottom: 32px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .read-more {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .read-more strong {
+    color: var(--blue);
+    font-size: 20px;
+  }
+
+  .articles-section {
+    padding: 20px 0 110px;
+  }
+
+  .section-heading {
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: end;
+    gap: 60px;
+  }
+
+  .section-heading h2 {
+    margin-bottom: 0;
+    color: var(--navy);
+    font-size: clamp(36px, 5vw, 55px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+  }
+
+  .section-heading > p {
+    margin-bottom: 5px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .article-card {
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(7, 24, 46, 0.12);
+  }
+
+  .article-image {
+    position: relative;
+    height: 220px;
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
+    overflow: hidden;
+  }
+
+  .article-image::after {
+    content: "";
+    position: absolute;
+    top: -70px;
+    right: -55px;
+    width: 210px;
+    height: 210px;
+    border: 38px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+  }
+
+  .article-image span {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    font-size: 34px;
+    font-weight: 900;
+  }
+
+  .article-image-1 {
+    background: linear-gradient(135deg, var(--blue), var(--navy));
+  }
+
+  .article-image-2 {
+    background: linear-gradient(135deg, #164f80, var(--cyan));
+  }
+
+  .article-image-3 {
+    background: linear-gradient(135deg, var(--navy), #203f66);
+  }
+
+  .article-content {
+    padding: 28px;
+  }
+
+  .article-content h3 {
+    margin-bottom: 15px;
+    color: var(--navy);
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  .article-content p {
+    min-height: 72px;
+    margin-bottom: 28px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .newsletter {
+    padding: 0 0 55px;
+  }
+
+  .newsletter-box {
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    align-items: center;
+    gap: 60px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue), #035fa7);
+    border-radius: 20px;
+  }
+
+  .newsletter-box h2 {
+    margin-bottom: 18px;
+    font-size: clamp(34px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+  }
+
+  .newsletter-box p {
+    max-width: 700px;
+    margin-bottom: 0;
+    color: #d8edff;
+    line-height: 1.7;
+  }
+
+  .button {
+    justify-self: end;
+    min-height: 52px;
+    padding: 0 27px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .button.white {
+    color: var(--navy);
+    background: var(--white);
+  }
+
+  footer {
+    padding: 42px 0;
+  }
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .footer-logo {
+    margin-right: auto;
+  }
+
+  .footer-content p,
+  .footer-links {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 18px;
+  }
+
+  @media (max-width: 950px) {
+    .menu,
+    .header-button {
+      display: none;
+    }
+
+    .featured-card,
+    .section-heading,
+    .newsletter-box {
+      grid-template-columns: 1fr;
+    }
+
+    .articles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .button {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .container {
+      width: min(100% - 28px, 1180px);
+    }
+
+    .header {
+      position: static;
+    }
+
+    .navigation {
+      min-height: 72px;
+    }
+
+    .logo-image {
+      width: 48px;
+    }
+
+    .blog-hero {
+      padding: 70px 0 115px;
+    }
+
+    h1 {
+      font-size: 46px;
+      letter-spacing: -2px;
+    }
+
+    .featured-content {
+      padding: 35px 25px;
+    }
+
+    .featured-visual {
+      min-height: 300px;
+    }
+
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      gap: 20px;
+    }
+
+    .article-content p {
+      min-height: auto;
+    }
+
+    .newsletter-box {
+      padding: 40px 25px;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      margin-right: 0;
+    }
+  }
+</style>

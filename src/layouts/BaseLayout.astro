@@ -1,0 +1,75 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Elettromotor: installazione, manutenzione e progettazione di impianti tecnologici.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <Navbar />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --navy: #07182e;
+    --navy-light: #102c4e;
+    --blue: #0878d1;
+    --cyan: #29b8ef;
+    --white: #ffffff;
+    --background: #f4f7fa;
+    --text: #182536;
+    --muted: #667385;
+    --border: #dbe3ea;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    color: var(--text);
+    background: var(--white);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+  }
+
+  .container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  a {
+    color: inherit;
+  }
+</style>

@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Azienda | Elettromotor"
+  description="Scopri l’esperienza, le competenze e i valori di Elettromotor."
+>
+  <section class="page-hero">
+    <div class="container">
+      <span>La nostra azienda</span>
+
+      <h1>Esperienza tecnica e affidabilità al servizio dei clienti.</h1>
+
+      <p>
+        Elettromotor opera nel settore degli impianti tecnologici,
+        dell’elettromeccanica e della sicurezza, offrendo assistenza dalla
+        progettazione alla manutenzione.
+      </p>
+    </div>
+  </section>
+
+  <section class="company-content">
+    <div class="container company-grid">
+      <div>
+        <span class="section-label">Chi siamo</span>
+
+        <h2>Un unico referente per ogni esigenza tecnica.</h2>
+      </div>
+
+      <div class="company-text">
+        <p>
+          L’esperienza maturata nel settore permette a Elettromotor di
+          intervenire su impianti civili, industriali e condominiali.
+        </p>
+
+        <p>
+          Ogni progetto viene seguito con attenzione, dalla valutazione
+          iniziale all’installazione, fino ai controlli e agli interventi di
+          manutenzione programmata.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 115px 0;
+    color: var(--white);
+    background:
+      radial-gradient(
+        circle at 82% 30%,
+        rgba(41, 184, 239, 0.25),
+        transparent 28%
+      ),
+      linear-gradient(135deg, var(--navy), #0a3d6b);
+  }
+
+  .page-hero span,
+  .section-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+
+  .page-hero h1 {
+    max-width: 900px;
+    margin: 0 0 25px;
+    font-size: clamp(46px, 6vw, 75px);
+    line-height: 1;
+    letter-spacing: -3px;
+  }
+
+  .page-hero p {
+    max-width: 700px;
+    margin: 0;
+    color: #cad8e7;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .company-content {
+    padding: 110px 0;
+  }
+
+  .company-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 100px;
+  }
+
+  .section-label {
+    color: var(--blue);
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--navy);
+    font-size: clamp(36px, 5vw, 55px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+  }
+
+  .company-text p {
+    margin-top: 0;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 800px) {
+    .page-hero {
+      padding: 75px 0;
+    }
+
+    .page-hero h1 {
+      font-size: 46px;
+      letter-spacing: -2px;
+    }
+
+    .company-content {
+      padding: 75px 0;
+    }
+
+    .company-grid {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+  }
+</style>
