@@ -1,29 +1,48 @@
 ---
-import { installationServices } from "../../data/installazioni";
+import { maintenanceServices } from "../../data/manutenzioni";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const checks = [
+  "Verifica dello stato generale dell'impianto",
+  "Controllo dei componenti soggetti a usura",
+  "Pulizia, regolazione e sostituzione delle parti necessarie",
+  "Prove di funzionamento e controllo finale",
+  "Tracciabilita degli interventi eseguiti",
+];
 ---
 
 <BaseLayout
-  title="Installazioni | Elettromotor"
-  description="Installazione di impianti antincendio, sollevamento idrico, motori, serbatoi, impianti elettrici industriali ed ecosostenibili."
+  title="Manutenzioni | Elettromotor"
+  description="Manutenzione di estintori, porte REI, idranti, NASPI, sistemi di sollevamento idrico e impianti antincendio."
 >
   <section class="page-hero">
-    <div class="container hero-content">
-      <span class="eyebrow">I nostri servizi</span>
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">I nostri servizi</span>
 
-      <h1>
-        Installazioni affidabili
-        <strong>per impianti sicuri ed efficienti.</strong>
-      </h1>
+        <h1>
+          Manutenzioni puntuali
+          <strong>per impianti sempre efficienti.</strong>
+        </h1>
 
-      <p>
-        Seguiamo ogni intervento dalla valutazione iniziale fino alla posa in
-        opera e alla verifica finale dell'impianto.
-      </p>
+        <p>
+          Organizziamo controlli periodici e interventi tecnici per mantenere
+          gli impianti sicuri, funzionanti e conformi nel tempo.
+        </p>
 
-      <a class="hero-button" href="/contatti/">
-        Richiedi un sopralluogo
-      </a>
+        <a class="hero-button" href="/contatti/">
+          Programma un intervento
+        </a>
+      </div>
+
+      <aside class="hero-panel" aria-label="Vantaggi della manutenzione">
+        <span>Prevenzione</span>
+        <strong>Ridurre i guasti e intervenire prima dell'emergenza.</strong>
+        <p>
+          La manutenzione programmata aiuta a controllare lo stato degli
+          impianti e a pianificare gli interventi necessari.
+        </p>
+      </aside>
     </div>
   </section>
 
@@ -33,18 +52,19 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div>
           <span class="section-label">Ambiti di intervento</span>
 
-          <h2>Soluzioni tecniche studiate per ogni esigenza.</h2>
+          <h2>Assistenza tecnica per impianti civili e industriali.</h2>
         </div>
 
         <p>
-          Realizziamo impianti e sistemi destinati ad aziende, condomini,
-          attivita commerciali, industrie ed enti.
+          Interveniamo su estintori, porte REI, idranti, NASPI, sistemi di
+          sollevamento idrico e impianti antincendio soggetti a controllo
+          periodico.
         </p>
       </div>
 
       <div class="services-grid">
         {
-          installationServices.map((service) => (
+          maintenanceServices.map((service) => (
             <article class="service-card">
               <span class="service-number">{service.number}</span>
 
@@ -52,7 +72,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
               <p>{service.description}</p>
 
-              <a href={`/servizi/installazioni/${service.slug}/`}>
+              <a href={`/servizi/manutenzioni/${service.slug}/`}>
                 Leggi approfondimento
                 <span>+</span>
               </a>
@@ -63,63 +83,28 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="process-section">
-    <div class="container process-grid">
-      <div class="process-intro">
-        <span class="section-label">Il nostro metodo</span>
-
-        <h2>Dall'analisi iniziale alla messa in funzione.</h2>
-
-        <p>
-          Ogni installazione viene organizzata in modo da garantire chiarezza,
-          controllo delle lavorazioni e continuita dell'assistenza.
-        </p>
+  <section class="inspection-section">
+    <div class="container inspection-grid">
+      <div class="inspection-card">
+        <span>Controllo periodico</span>
+        <strong>Un piano ordinato evita interventi improvvisati.</strong>
       </div>
 
-      <div class="steps">
-        <article class="step">
-          <span>01</span>
-          <div>
-            <h3>Sopralluogo</h3>
-            <p>
-              Analizziamo gli ambienti, gli impianti esistenti e le necessita
-              del cliente.
-            </p>
-          </div>
-        </article>
+      <div class="inspection-content">
+        <span class="section-label">Cosa controlliamo</span>
 
-        <article class="step">
-          <span>02</span>
-          <div>
-            <h3>Proposta tecnica</h3>
-            <p>
-              Definiamo la soluzione, le apparecchiature e le modalita di
-              intervento.
-            </p>
-          </div>
-        </article>
+        <h2>Ogni intervento segue una verifica chiara.</h2>
 
-        <article class="step">
-          <span>03</span>
-          <div>
-            <h3>Installazione</h3>
-            <p>
-              Eseguiamo la posa in opera e il collegamento dei componenti
-              previsti.
-            </p>
-          </div>
-        </article>
+        <p>
+          La manutenzione viene organizzata in base al tipo di impianto, alla
+          frequenza di utilizzo e alle condizioni operative. L'obiettivo e
+          individuare anomalie, usure o inefficienze prima che diventino un
+          problema.
+        </p>
 
-        <article class="step">
-          <span>04</span>
-          <div>
-            <h3>Verifica finale</h3>
-            <p>
-              Controlliamo il corretto funzionamento prima della consegna
-              dell'impianto.
-            </p>
-          </div>
-        </article>
+        <ul>
+          {checks.map((check) => <li>{check}</li>)}
+        </ul>
       </div>
     </div>
   </section>
@@ -127,13 +112,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   <section class="cta-section">
     <div class="container cta-box">
       <div>
-        <span class="section-label light">Parliamo del tuo progetto</span>
+        <span class="section-label light">Assistenza e manutenzione</span>
 
-        <h2>Devi installare o sostituire un impianto?</h2>
+        <h2>Vuoi programmare un controllo?</h2>
 
         <p>
-          Contattaci per descrivere il lavoro e programmare un sopralluogo
-          tecnico.
+          Contattaci per descrivere l'impianto e organizzare un intervento o
+          un piano di manutenzione periodica.
         </p>
       </div>
 
@@ -157,8 +142,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       linear-gradient(135deg, var(--navy), #0a477d);
   }
 
-  .hero-content {
-    max-width: 1180px;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    align-items: end;
+    gap: 70px;
   }
 
   .eyebrow,
@@ -223,7 +211,40 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     text-decoration: none;
   }
 
-  .services-section {
+  .hero-panel {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-panel span {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .hero-panel strong {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--white);
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .hero-panel p {
+    margin: 0;
+    color: #d8edff;
+    font-size: 14px;
+  }
+
+  .services-section,
+  .inspection-section {
     padding: 110px 0;
   }
 
@@ -243,16 +264,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     letter-spacing: -1.8px;
   }
 
-  .section-heading > p {
+  .section-heading > p,
+  .inspection-content > p {
     margin-bottom: 5px;
     color: var(--muted);
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 18px;
   }
 
@@ -312,58 +334,73 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     font-size: 20px;
   }
 
-  .process-section {
-    padding: 110px 0;
-    color: var(--white);
-    background: var(--navy);
+  .inspection-section {
+    background: var(--background);
   }
 
-  .process-grid {
+  .inspection-grid {
     display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 100px;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    gap: 90px;
   }
 
-  .process-intro h2 {
-    margin-bottom: 25px;
-    color: var(--white);
-  }
-
-  .process-intro p {
-    color: #aebdd0;
-    font-size: 16px;
-    line-height: 1.75;
-  }
-
-  .steps {
+  .inspection-card {
+    min-height: 480px;
+    padding: 36px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    color: var(--white);
+    background:
+      radial-gradient(
+        circle at 70% 22%,
+        rgba(41, 184, 239, 0.25),
+        transparent 30%
+      ),
+      linear-gradient(145deg, var(--blue), var(--navy));
+    border-radius: 20px;
   }
 
-  .step {
-    padding: 25px 0;
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 22px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .step > span {
+  .inspection-card span {
+    margin-bottom: 14px;
     color: var(--cyan);
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .inspection-card strong {
+    max-width: 470px;
+    font-size: 34px;
+    line-height: 1.12;
+  }
+
+  .inspection-content p {
+    margin: 22px 0 28px;
+  }
+
+  .inspection-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .inspection-content li {
+    position: relative;
+    padding: 14px 0 14px 30px;
+    border-bottom: 1px solid var(--border);
+    color: var(--navy);
+    font-size: 15px;
     font-weight: 800;
   }
 
-  .step h3 {
-    margin-bottom: 8px;
-    font-size: 21px;
-  }
-
-  .step p {
-    margin-bottom: 0;
-    color: #aebdd0;
-    font-size: 14px;
-    line-height: 1.7;
+  .inspection-content li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
   }
 
   .cta-section {
@@ -403,12 +440,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     }
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 1000px) {
+    .hero-grid,
     .section-heading,
-    .process-grid,
+    .inspection-grid,
     .cta-box {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 42px;
+    }
+
+    .hero-panel {
+      max-width: 560px;
     }
 
     .services-grid {
@@ -430,8 +472,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       letter-spacing: -2px;
     }
 
+    h2 {
+      font-size: 36px;
+    }
+
     .services-section,
-    .process-section {
+    .inspection-section {
       padding: 75px 0;
     }
 
@@ -441,6 +487,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
     .service-card {
       min-height: 280px;
+    }
+
+    .inspection-card {
+      min-height: 380px;
+      padding: 28px;
+    }
+
+    .inspection-card strong {
+      font-size: 28px;
     }
 
     .cta-section {

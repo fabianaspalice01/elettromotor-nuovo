@@ -1,0 +1,562 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const contactItems = [
+  {
+    label: "Email",
+    value: "info@elettromotor.net",
+    href: "mailto:info@elettromotor.net",
+  },
+  {
+    label: "Telefono ufficio",
+    value: "+39 0815761773",
+    href: "tel:+390815761773",
+  },
+  {
+    label: "Telefono assistenza",
+    value: "+ 39 3285539008",
+    href: "tel:+393285539008",
+  },
+  {
+    label: "Sede",
+    value: "Via Castel Belvedere, 168/A-80016, Marano di Napoli(NA)",
+    href: null,
+  },
+];
+
+const requestTypes = [
+  "Sopralluogo tecnico",
+  "Assistenza impianto",
+  "Manutenzione programmata",
+  "Richiesta informazioni",
+];
+---
+
+<BaseLayout
+  title="Contatti | Elettromotor"
+  description="Contatta Elettromotor per assistenza, sopralluoghi, manutenzione e progettazione di impianti tecnologici."
+>
+  <section class="page-hero">
+    <div class="container hero-grid">
+      <div>
+        <span>Contatti</span>
+
+        <h1>Parliamo del tuo impianto o del prossimo intervento.</h1>
+
+        <p>
+          Scrivici per richiedere assistenza, programmare un sopralluogo o
+          ricevere informazioni sui servizi di installazione e manutenzione.
+        </p>
+      </div>
+
+      <div class="hero-card" aria-label="Tempi di risposta">
+        <strong>Risposta rapida</strong>
+        <p>
+          Raccontaci le tue esigenze: ti ricontatteremo per valutare la
+          soluzione tecnica piu adatta.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container contact-grid">
+      <aside class="contact-info">
+        <span class="section-label">Recapiti</span>
+
+        <h2>Un riferimento diretto per assistenza e sopralluoghi.</h2>
+
+        <div class="contact-list">
+          {
+            contactItems.map((item) => (
+              <div class="contact-item">
+                <span>{item.label}</span>
+
+                {item.href ? (
+                  <a href={item.href}>{item.value}</a>
+                ) : (
+                  <p>{item.value}</p>
+                )}
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="hours-box">
+          <span>Orari</span>
+          <ul>
+            <li>
+              <strong>Lunedi</strong>
+              <span>8:30 - 18:30</span>
+            </li>
+            <li>
+              <strong>Martedi</strong>
+              <span>8:30 - 18:30</span>
+            </li>
+            <li>
+              <strong>Mercoledi</strong>
+              <span>8:30 - 18:30</span>
+            </li>
+            <li>
+              <strong>Giovedi</strong>
+              <span>8:30 - 18:30</span>
+            </li>
+            <li>
+              <strong>Venerdi</strong>
+              <span>8:30 - 18:30</span>
+            </li>
+            <li>
+              <strong>Sabato e Domenica</strong>
+              <span>Chiusi</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <form
+        class="contact-form"
+        action="mailto:info@elettromotor.net"
+        method="post"
+        enctype="text/plain"
+      >
+        <div class="form-heading">
+          <span class="section-label">Richiesta</span>
+          <h2>Invia un messaggio</h2>
+          <p>
+            Compila i campi principali: useremo queste informazioni per
+            ricontattarti con piu precisione.
+          </p>
+        </div>
+
+        <div class="field-grid">
+          <label>
+            Nome e cognome
+            <input type="text" name="nome" autocomplete="name" required />
+          </label>
+
+          <label>
+            Azienda
+            <input type="text" name="azienda" autocomplete="organization" />
+          </label>
+        </div>
+
+        <div class="field-grid">
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <label>
+            Telefono
+            <input type="tel" name="telefono" autocomplete="tel" />
+          </label>
+        </div>
+
+        <label>
+          Tipo di richiesta
+          <select name="tipo-richiesta" required>
+            <option value="">Seleziona una voce</option>
+            {requestTypes.map((type) => <option value={type}>{type}</option>)}
+          </select>
+        </label>
+
+        <label>
+          Messaggio
+          <textarea
+            name="messaggio"
+            rows="6"
+            placeholder="Descrivi brevemente l'impianto, il problema o il servizio richiesto."
+            required></textarea>
+        </label>
+
+        <label class="privacy-check">
+          <input type="checkbox" name="privacy" required />
+          <span
+            >Ho letto l'informativa privacy e acconsento al trattamento dei
+            dati.</span
+          >
+        </label>
+
+        <button type="submit">Invia richiesta</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="service-strip">
+    <div class="container strip-grid">
+      <div>
+        <span>01</span>
+        <strong>Sopralluoghi</strong>
+        <p>Valutazione tecnica iniziale per interventi mirati e preventivi.</p>
+      </div>
+
+      <div>
+        <span>02</span>
+        <strong>Assistenza</strong>
+        <p>
+          Supporto su impianti tecnologici, idrici, antincendio ed
+          elettromeccanici.
+        </p>
+      </div>
+
+      <div>
+        <span>03</span>
+        <strong>Manutenzione</strong>
+        <p>
+          Programmi periodici per mantenere efficienza, sicurezza e conformita.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 110px 0;
+    color: var(--white);
+    background:
+      radial-gradient(
+        circle at 82% 24%,
+        rgba(41, 184, 239, 0.25),
+        transparent 30%
+      ),
+      linear-gradient(135deg, var(--navy), #0a3d6b);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    align-items: end;
+    gap: 70px;
+  }
+
+  .page-hero span,
+  .section-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+
+  .page-hero h1 {
+    max-width: 920px;
+    margin: 0 0 24px;
+    font-size: clamp(46px, 6vw, 74px);
+    line-height: 1;
+    letter-spacing: -3px;
+  }
+
+  .page-hero p {
+    max-width: 720px;
+    margin: 0;
+    color: #cad8e7;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .hero-card {
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-card strong {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--white);
+    font-size: 22px;
+  }
+
+  .hero-card p {
+    color: #d8edff;
+    font-size: 14px;
+  }
+
+  .contact-section {
+    padding: 100px 0;
+    background: var(--white);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 70px;
+  }
+
+  .section-label {
+    color: var(--blue);
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--navy);
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+  }
+
+  .contact-list {
+    margin-top: 36px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .contact-item {
+    padding: 22px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .contact-item span,
+  .hours-box span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .contact-item a,
+  .contact-item p {
+    margin: 0;
+    color: var(--navy);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+
+  .contact-item a:hover {
+    color: var(--blue);
+  }
+
+  .hours-box {
+    margin-top: 28px;
+    padding: 26px;
+    color: var(--white);
+    background: var(--navy);
+    border-radius: 8px;
+  }
+
+  .hours-box span {
+    color: var(--cyan);
+  }
+
+  .hours-box ul {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 11px;
+    list-style: none;
+  }
+
+  .hours-box li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    color: #cad8e7;
+    line-height: 1.5;
+  }
+
+  .hours-box li strong {
+    color: var(--white);
+    font-size: 14px;
+  }
+
+  .hours-box li span {
+    color: #cad8e7;
+    font-size: 14px;
+    text-align: right;
+  }
+
+  .contact-form {
+    padding: 36px;
+    display: grid;
+    gap: 20px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .form-heading p {
+    max-width: 620px;
+    margin: 14px 0 8px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  label {
+    display: grid;
+    gap: 8px;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    color: var(--text);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font: inherit;
+    font-size: 14px;
+  }
+
+  textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid rgba(8, 120, 209, 0.22);
+    border-color: var(--blue);
+  }
+
+  .privacy-check {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .privacy-check input {
+    width: 16px;
+    min-height: 16px;
+    margin-top: 2px;
+  }
+
+  button {
+    width: fit-content;
+    min-height: 52px;
+    padding: 0 28px;
+    color: var(--white);
+    background: var(--blue);
+    border: 0;
+    border-radius: 7px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease;
+  }
+
+  button:hover {
+    background: var(--navy);
+    transform: translateY(-2px);
+  }
+
+  .service-strip {
+    padding: 0 0 90px;
+    background: var(--white);
+  }
+
+  .strip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .strip-grid div {
+    min-height: 210px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    background: var(--navy);
+    border-radius: 8px;
+  }
+
+  .strip-grid span {
+    margin-bottom: 38px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .strip-grid strong {
+    margin-bottom: 12px;
+    color: var(--white);
+    font-size: 24px;
+  }
+
+  .strip-grid p {
+    margin: 0;
+    color: #aebdd0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 950px) {
+    .hero-grid,
+    .contact-grid,
+    .strip-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-grid,
+    .contact-grid {
+      gap: 42px;
+    }
+
+    .hero-card {
+      max-width: 520px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .page-hero {
+      padding: 75px 0;
+    }
+
+    .page-hero h1 {
+      font-size: 44px;
+      letter-spacing: -2px;
+    }
+
+    .contact-section {
+      padding: 70px 0;
+    }
+
+    .field-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+      padding: 26px 20px;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .service-strip {
+      padding-bottom: 70px;
+    }
+  }
+</style>
