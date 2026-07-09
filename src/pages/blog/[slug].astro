@@ -1,0 +1,383 @@
+---
+import { articles } from "../../data/blog";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+
+const seoTitle = "seoTitle" in article ? article.seoTitle : article.title;
+const heroImage = "heroImage" in article ? article.heroImage : undefined;
+const heroStyle = heroImage ? `--hero-image: url("${heroImage}")` : undefined;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: article.title,
+  description: article.description,
+  datePublished: article.isoDate,
+  dateModified: article.isoDate,
+  inLanguage: "it",
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
+  author: {
+    "@type": "Organization",
+    name: "Elettromotor",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Elettromotor",
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/images/logo-elettromotor.png", Astro.site).toString(),
+    },
+  },
+};
+---
+
+<BaseLayout
+  title={`${seoTitle} | Elettromotor`}
+  description={article.description}
+  image={heroImage}
+  type="article"
+>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(articleJsonLd)}
+    slot="head"
+  />
+
+  <section class:list={["detail-hero", { "has-image": heroImage }]} style={heroStyle}>
+    <div class="container">
+      <div class="hero-content">
+        <a class="back-link" href="/blog/">Blog</a>
+
+        <div class="article-meta">
+          <span>{article.category}</span>
+          <time datetime={article.isoDate}>{article.date}</time>
+        </div>
+
+        <h1>{article.title}</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-content">
+    <div class="container content-grid">
+      <aside class="summary-card">
+        <span>{article.category}</span>
+        <strong>{article.title}</strong>
+        <p>
+          Hai bisogno di una consulenza sulla sicurezza o sugli impianti
+          della tua azienda?
+        </p>
+        <a href="/contatti/">Contattaci</a>
+      </aside>
+
+      <article class="article-content">
+        <div class="intro">
+          {article.intro.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        <div class="sections">
+          {
+            article.sections.map((section) => (
+              <section>
+                <h2>{section.title}</h2>
+
+                {section.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+
+                {"items" in section && section.items && (
+                  <ul>
+                    {section.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {"image" in section && section.image && (
+                  <figure class="section-figure">
+                    <img
+                      src={section.image.src}
+                      alt={section.image.alt}
+                      loading="lazy"
+                    />
+                    <figcaption>{section.image.alt}</figcaption>
+                  </figure>
+                )}
+              </section>
+            ))
+          }
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .detail-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 125px 0 95px;
+    color: var(--white);
+    background:
+      radial-gradient(
+        circle at 84% 22%,
+        rgba(41, 184, 239, 0.28),
+        transparent 30%
+      ),
+      linear-gradient(135deg, var(--navy), #0a477d);
+  }
+
+  .detail-hero.has-image {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(7, 24, 46, 0.94) 0%,
+        rgba(7, 24, 46, 0.84) 42%,
+        rgba(7, 24, 46, 0.56) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(7, 24, 46, 0.2),
+        rgba(7, 24, 46, 0.7)
+      ),
+      var(--hero-image) center / cover no-repeat;
+  }
+
+  .detail-hero::after {
+    content: "";
+    position: absolute;
+    right: -120px;
+    bottom: -180px;
+    width: 430px;
+    height: 430px;
+    border: 78px solid rgba(41, 184, 239, 0.12);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #d8edff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .back-link:hover {
+    color: var(--cyan);
+  }
+
+  .article-meta {
+    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    color: #cad8e7;
+    font-size: 12px;
+  }
+
+  .article-meta span {
+    color: var(--cyan);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    max-width: 840px;
+    margin-bottom: 0;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+  }
+
+  .detail-content {
+    padding: 95px 0;
+    background: var(--white);
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 76px;
+    align-items: start;
+  }
+
+  .summary-card {
+    position: sticky;
+    top: 125px;
+    padding: 28px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .summary-card span {
+    display: block;
+    margin-bottom: 42px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .summary-card strong {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--navy);
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .summary-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .summary-card a {
+    min-height: 48px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background: var(--blue);
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .summary-card a:hover {
+    background: var(--navy);
+  }
+
+  .article-content {
+    max-width: 860px;
+  }
+
+  .intro {
+    padding-bottom: 34px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .intro p,
+  .sections > section > p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.9;
+  }
+
+  .intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  .sections {
+    display: grid;
+    gap: 48px;
+    padding-top: 48px;
+  }
+
+  .sections h2 {
+    margin-bottom: 18px;
+    color: var(--navy);
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+
+  .sections p + p {
+    margin-top: 18px;
+  }
+
+  .sections ul {
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sections li {
+    position: relative;
+    padding: 14px 0 14px 28px;
+    border-bottom: 1px solid var(--border);
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .sections li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 900;
+  }
+
+  .section-figure {
+    max-width: 560px;
+    margin: 24px auto 0;
+  }
+
+  .section-figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .section-figure figcaption {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  @media (max-width: 950px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 42px;
+    }
+
+    .summary-card {
+      position: static;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .detail-hero {
+      padding: 75px 0 65px;
+    }
+
+    .detail-content {
+      padding: 70px 0;
+    }
+
+    .sections {
+      gap: 36px;
+      padding-top: 36px;
+    }
+  }
+</style>

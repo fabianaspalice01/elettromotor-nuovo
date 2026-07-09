@@ -1,339 +1,144 @@
 ---
-const articles = [
-  {
-    category: "Antincendio",
-    date: "10 luglio 2026",
-    title: "Manutenzione degli impianti antincendio",
-    description:
-      "Perché i controlli periodici sono fondamentali per mantenere efficienti e sicuri gli impianti antincendio.",
-    slug: "#",
-  },
-  {
-    category: "Impianti idrici",
-    date: "4 luglio 2026",
-    title: "Come mantenere efficiente un gruppo di pressurizzazione",
-    description:
-      "Controlli, manutenzione e accorgimenti utili per prevenire guasti e interruzioni del servizio.",
-    slug: "#",
-  },
-  {
-    category: "Motori elettrici",
-    date: "28 giugno 2026",
-    title: "Quando è necessario riavvolgere un motore elettrico",
-    description:
-      "I principali segnali di usura e le valutazioni da effettuare prima della riparazione.",
-    slug: "#",
-  },
-];
+import { articles } from "../../data/blog";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const featuredArticle = articles[0];
 ---
 
-<!doctype html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8" />
+<BaseLayout
+  title="Blog | Elettromotor"
+  description="Notizie, approfondimenti e consigli tecnici di Elettromotor su impianti, manutenzione e sicurezza."
+>
+  <section class="blog-hero">
+    <div class="container blog-hero-content">
+      <span class="eyebrow">Elettromotor Journal</span>
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+      <h1>
+        Notizie e approfondimenti
+        <span>dal mondo degli impianti.</span>
+      </h1>
 
-    <meta
-      name="description"
-      content="Notizie, approfondimenti e consigli tecnici di Elettromotor su impianti, manutenzione e sicurezza."
-    />
+      <p>
+        Consigli tecnici, aggiornamenti e informazioni utili per mantenere
+        gli impianti efficienti, sicuri e affidabili.
+      </p>
+    </div>
+  </section>
 
-    <title>Blog | Elettromotor</title>
-  </head>
+  <section class="featured">
+    <div class="container">
+      <a class="featured-card" href={`/blog/${featuredArticle.slug}/`}>
+        <div class="featured-visual">
+          <div class="featured-symbol">
+            <span>E</span>
+          </div>
 
-  <body>
-    <header class="header">
-      <div class="container navigation">
-        <a class="logo" href="/" aria-label="Elettromotor Home">
-          <img
-            src="/images/logo-elettromotor.png"
-            alt="Elettromotor"
-            class="logo-image"
-          />
+          <span class="featured-label">In evidenza</span>
+        </div>
 
-          <span class="logo-text">
-            <strong>ELETTROMOTOR</strong>
-            <small>Tecnologia e sicurezza</small>
+        <div class="featured-content">
+          <div class="article-meta">
+            <span>{featuredArticle.category}</span>
+            <time datetime={featuredArticle.isoDate}>{featuredArticle.date}</time>
+          </div>
+
+          <h2>{featuredArticle.title}</h2>
+
+          <p>{featuredArticle.description}</p>
+
+          <span class="read-more">
+            Leggi l'articolo
+            <strong>→</strong>
           </span>
-        </a>
+        </div>
+      </a>
+    </div>
+  </section>
 
-        <nav class="menu" aria-label="Navigazione principale">
-          <a href="/#azienda">Azienda</a>
-          <a href="/#servizi">Servizi</a>
-          <a href="/#manutenzione">Manutenzione</a>
-          <a href="/blog/" class="active">Blog</a>
-          <a href="/#contatti">Contatti</a>
-        </nav>
+  <section class="articles-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-label">Ultimi articoli</span>
+          <h2>Approfondimenti e consigli tecnici.</h2>
+        </div>
 
-        <a class="header-button" href="/#contatti">
-          Richiedi un sopralluogo
-        </a>
+        <p>
+          Contenuti dedicati alla manutenzione, alla sicurezza e alla
+          corretta gestione degli impianti.
+        </p>
       </div>
-    </header>
 
-    <main>
-      <section class="blog-hero">
-        <div class="container blog-hero-content">
-          <span class="eyebrow">Elettromotor Journal</span>
+      <div class="articles-grid">
+        {
+          articles.map((article, index) => (
+            <article class="article-card">
+              <a href={`/blog/${article.slug}/`}>
+                <div
+                  class:list={[
+                    "article-image",
+                    article.heroImage
+                      ? "has-image"
+                      : `article-image-${(index % 3) + 1}`,
+                  ]}
+                  style={
+                    article.heroImage
+                      ? `--article-image: url("${article.heroImage}")`
+                      : undefined
+                  }
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                </div>
 
-          <h1>
-            Notizie e approfondimenti
-            <span>dal mondo degli impianti.</span>
-          </h1>
+                <div class="article-content">
+                  <div class="article-meta">
+                    <span>{article.category}</span>
+                    <time datetime={article.isoDate}>{article.date}</time>
+                  </div>
 
-          <p>
-            Consigli tecnici, aggiornamenti e informazioni utili per mantenere
-            gli impianti efficienti, sicuri e affidabili.
-          </p>
-        </div>
-      </section>
+                  <h3>{article.title}</h3>
 
-      <section class="featured">
-        <div class="container">
-          <a class="featured-card" href={featuredArticle.slug}>
-            <div class="featured-visual">
-              <div class="featured-symbol">
-                <span>E</span>
-              </div>
+                  <p>{article.description}</p>
 
-              <span class="featured-label">In evidenza</span>
-            </div>
-
-            <div class="featured-content">
-              <div class="article-meta">
-                <span>{featuredArticle.category}</span>
-                <time>{featuredArticle.date}</time>
-              </div>
-
-              <h2>{featuredArticle.title}</h2>
-
-              <p>{featuredArticle.description}</p>
-
-              <span class="read-more">
-                Leggi l’articolo
-                <strong>→</strong>
-              </span>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section class="articles-section">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <span class="section-label">Ultimi articoli</span>
-              <h2>Approfondimenti e consigli tecnici.</h2>
-            </div>
-
-            <p>
-              Contenuti dedicati alla manutenzione, alla sicurezza e alla
-              corretta gestione degli impianti.
-            </p>
-          </div>
-
-          <div class="articles-grid">
-            {
-              articles.map((article, index) => (
-                <article class="article-card">
-                  <a href={article.slug}>
-                    <div class={`article-image article-image-${index + 1}`}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                    </div>
-
-                    <div class="article-content">
-                      <div class="article-meta">
-                        <span>{article.category}</span>
-                        <time>{article.date}</time>
-                      </div>
-
-                      <h3>{article.title}</h3>
-
-                      <p>{article.description}</p>
-
-                      <span class="read-more">
-                        Leggi l’articolo
-                        <strong>→</strong>
-                      </span>
-                    </div>
-                  </a>
-                </article>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
-      <section class="newsletter">
-        <div class="container newsletter-box">
-          <div>
-            <span class="section-label light">Rimani aggiornato</span>
-
-            <h2>Novità, consigli e informazioni utili.</h2>
-
-            <p>
-              Segui il blog Elettromotor per conoscere le novità relative agli
-              impianti tecnologici, alla manutenzione e alla sicurezza.
-            </p>
-          </div>
-
-          <a class="button white" href="mailto:info@elettromotor.net">
-            Contattaci
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container footer-content">
-        <a class="logo footer-logo" href="/">
-          <img
-            src="/images/logo-elettromotor.png"
-            alt="Elettromotor"
-            class="logo-image"
-          />
-
-          <span class="logo-text">
-            <strong>ELETTROMOTOR</strong>
-            <small>Tecnologia e sicurezza</small>
-          </span>
-        </a>
-
-        <p>© 2026 Elettromotor. Tutti i diritti riservati.</p>
-
-        <div class="footer-links">
-          <a href="#">Privacy</a>
-          <a href="#">Cookie Policy</a>
-        </div>
+                  <span class="read-more">
+                    Leggi l'articolo
+                    <strong>→</strong>
+                  </span>
+                </div>
+              </a>
+            </article>
+          ))
+        }
       </div>
-    </footer>
-  </body>
-</html>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container newsletter-box">
+      <div>
+        <span class="section-label light">Rimani aggiornato</span>
+
+        <h2>Novità, consigli e informazioni utili.</h2>
+
+        <p>
+          Segui il blog Elettromotor per conoscere le novità relative agli
+          impianti tecnologici, alla manutenzione e alla sicurezza.
+        </p>
+      </div>
+
+      <a class="button white" href="mailto:info@elettromotor.net">
+        Contattaci
+      </a>
+    </div>
+  </section>
+</BaseLayout>
 
 <style>
-  :root {
-    --navy: #07182e;
-    --navy-light: #102c4e;
-    --blue: #0878d1;
-    --cyan: #29b8ef;
-    --white: #ffffff;
-    --background: #f4f7fa;
-    --text: #182536;
-    --muted: #667385;
-    --border: #dbe3ea;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    color: var(--text);
-    background: var(--white);
-    font-family: Inter, Arial, Helvetica, sans-serif;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
   h1,
   h2,
   h3,
   p {
     margin-top: 0;
-  }
-
-  .container {
-    width: min(1180px, calc(100% - 40px));
-    margin: 0 auto;
-  }
-
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(12px);
-  }
-
-  .navigation {
-    min-height: 82px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .logo {
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .logo-image {
-    width: 58px;
-    height: auto;
-    display: block;
-  }
-
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-
-  .logo-text strong {
-    color: var(--navy);
-    font-size: 18px;
-    letter-spacing: 0.7px;
-  }
-
-  .logo-text small {
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 11px;
-  }
-
-  .menu {
-    display: flex;
-    align-items: center;
-    gap: 27px;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .menu a {
-    padding: 30px 0;
-    border-bottom: 2px solid transparent;
-  }
-
-  .menu a:hover,
-  .menu a.active {
-    color: var(--blue);
-    border-bottom-color: var(--blue);
-  }
-
-  .header-button {
-    padding: 13px 20px;
-    color: var(--white);
-    background: var(--navy);
-    border-radius: 7px;
-    font-size: 13px;
-    font-weight: 700;
   }
 
   .blog-hero {
@@ -406,6 +211,7 @@ const featuredArticle = articles[0];
     background: var(--white);
     border-radius: 18px;
     box-shadow: 0 25px 65px rgba(7, 24, 46, 0.18);
+    text-decoration: none;
   }
 
   .featured-visual {
@@ -556,6 +362,11 @@ const featuredArticle = articles[0];
       box-shadow 0.25s ease;
   }
 
+  .article-card a {
+    display: block;
+    text-decoration: none;
+  }
+
   .article-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 20px 40px rgba(7, 24, 46, 0.12);
@@ -599,6 +410,12 @@ const featuredArticle = articles[0];
 
   .article-image-3 {
     background: linear-gradient(135deg, var(--navy), #203f66);
+  }
+
+  .article-image.has-image {
+    background:
+      linear-gradient(180deg, rgba(7, 24, 46, 0.05), rgba(7, 24, 46, 0.55)),
+      var(--article-image) center / cover no-repeat;
   }
 
   .article-content {
@@ -659,6 +476,7 @@ const featuredArticle = articles[0];
     border-radius: 7px;
     font-size: 14px;
     font-weight: 800;
+    text-decoration: none;
   }
 
   .button.white {
@@ -666,37 +484,7 @@ const featuredArticle = articles[0];
     background: var(--white);
   }
 
-  footer {
-    padding: 42px 0;
-  }
-
-  .footer-content {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-  }
-
-  .footer-logo {
-    margin-right: auto;
-  }
-
-  .footer-content p,
-  .footer-links {
-    color: var(--muted);
-    font-size: 12px;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 18px;
-  }
-
   @media (max-width: 950px) {
-    .menu,
-    .header-button {
-      display: none;
-    }
-
     .featured-card,
     .section-heading,
     .newsletter-box {
@@ -713,22 +501,6 @@ const featuredArticle = articles[0];
   }
 
   @media (max-width: 650px) {
-    .container {
-      width: min(100% - 28px, 1180px);
-    }
-
-    .header {
-      position: static;
-    }
-
-    .navigation {
-      min-height: 72px;
-    }
-
-    .logo-image {
-      width: 48px;
-    }
-
     .blog-hero {
       padding: 70px 0 115px;
     }
@@ -760,15 +532,6 @@ const featuredArticle = articles[0];
 
     .newsletter-box {
       padding: 40px 25px;
-    }
-
-    .footer-content {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .footer-logo {
-      margin-right: 0;
     }
   }
 </style>
