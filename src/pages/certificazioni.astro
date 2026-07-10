@@ -1,0 +1,573 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const isoCertifications = [
+  {
+    title: "ISO 9001",
+    description:
+      "Sistema di gestione per la qualita, a supporto di processi tecnici organizzati e controllati.",
+    image: "/images/certificazione-iso-9001.png",
+    alt: "Certificazione ISO 9001 Elettromotor",
+    documentUrl: "/images/attestato-iso-9001.jpg",
+  },
+  {
+    title: "ISO 14001",
+    description:
+      "Sistema di gestione ambientale per operare con attenzione agli impatti e alla sostenibilita.",
+    image: "/images/certificazione-iso-14001.png",
+    alt: "Certificazione ISO 14001 Elettromotor",
+    documentUrl: "/images/attestato-iso-14001.jpg",
+  },
+  {
+    title: "ISO 45001",
+    description:
+      "Sistema di gestione per salute e sicurezza sul lavoro, orientato alla prevenzione dei rischi.",
+    image: "/images/certificazione-iso-45001.png",
+    alt: "Certificazione ISO 45001 Elettromotor",
+    documentUrl: "/images/attestato-iso-45001.jpg",
+  },
+];
+
+const qualifications = [
+  {
+    title: "Centro Assistenza autorizzato Pedrollo",
+    label: "Assistenza",
+    description:
+      "Riferimento tecnico autorizzato per attivita di assistenza e supporto su soluzioni Pedrollo.",
+    image: "/images/certificazione-pedrollo.jpg",
+    alt: "Logo Pedrollo",
+    documentUrl: "/images/attestato-pedrollo.jpg",
+  },
+  {
+    title: "Abilitazione MEPA",
+    label: "Pubblica amministrazione",
+    description:
+      "Presenza sul Mercato Elettronico della Pubblica Amministrazione per forniture e servizi qualificati.",
+    image: "/images/certificazione-mepa.png",
+    alt: "Abilitazione MEPA Elettromotor",
+  },
+  {
+    title: "Assicurazione RC - RCT Cattolica Assicurazioni",
+    label: "Tutela",
+    description:
+      "Copertura assicurativa per responsabilita civile e responsabilita civile verso terzi.",
+    image: "/images/certificazione-cattolica.jpg",
+    alt: "Cattolica Assicurazioni",
+  },
+  {
+    title: "Abilitazione DM 37/2008",
+    label: "Impianti",
+    description:
+      "Abilitazione per l'installazione e la manutenzione degli impianti secondo il D.M. 37/2008.",
+    image: "/images/certificazione-dm-3708.jpg",
+    alt: "Abilitazione DM 37/2008",
+  },
+];
+---
+
+<BaseLayout
+  title="Certificazioni | Elettromotor"
+  description="Certificazioni, abilitazioni e qualifiche di Elettromotor per impianti tecnologici, antincendio, idrici ed elettromeccanici."
+>
+  <section class="page-hero">
+    <div class="container hero-grid">
+      <div>
+        <span>Certificazioni</span>
+
+        <h1>Qualifiche e abilitazioni a supporto di ogni intervento.</h1>
+
+        <p>
+          Elettromotor opera con sistemi certificati e requisiti tecnici
+          riconosciuti, per offrire servizi affidabili in ambito impiantistico,
+          antincendio, idrico ed elettromeccanico.
+        </p>
+      </div>
+
+      <div class="hero-panel" aria-label="Sintesi certificazioni">
+        <strong>ISO 9001, 14001, 45001</strong>
+        <p>
+          Qualita, ambiente, salute e sicurezza sono integrati nei processi
+          aziendali e nelle attivita operative.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="iso-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-label">Sistemi certificati</span>
+          <h2>Certificazioni ISO.</h2>
+        </div>
+
+        <p>
+          Le certificazioni rappresentano un impegno concreto verso gestione,
+          controllo, sicurezza e miglioramento continuo dei servizi.
+        </p>
+      </div>
+
+      <div class="iso-grid">
+        {
+          isoCertifications.map((certification) => (
+            <a
+              class="iso-card"
+              href={certification.documentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Apri attestato ${certification.title}`}
+            >
+              <div class="cert-image">
+                <img src={certification.image} alt={certification.alt} />
+              </div>
+
+              <div class="cert-content">
+                <h3>{certification.title}</h3>
+                <p>{certification.description}</p>
+                <span>Apri attestato</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="qualifications-section">
+    <div class="container qualifications-grid">
+      <div class="sticky-heading">
+        <span class="section-label">Abilitazioni</span>
+        <h2>Riconoscimenti operativi e coperture professionali.</h2>
+        <p>
+          Le ulteriori qualifiche completano il profilo tecnico dell'azienda e
+          rafforzano la capacita di lavorare con clienti privati, condomini,
+          imprese e pubbliche amministrazioni.
+        </p>
+      </div>
+
+      <div class="qualification-list">
+        {
+          qualifications.map((qualification, index) => {
+            const cardContent = (
+              <>
+                <div class="qualification-number">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+                <div class="qualification-logo">
+                  <img src={qualification.image} alt={qualification.alt} />
+                </div>
+
+                <div class="qualification-copy">
+                  <span>{qualification.label}</span>
+                  <h3>{qualification.title}</h3>
+                  <p>{qualification.description}</p>
+                  {"documentUrl" in qualification && qualification.documentUrl && (
+                    <strong>Apri documento</strong>
+                  )}
+                </div>
+              </>
+            );
+
+            return "documentUrl" in qualification && qualification.documentUrl ? (
+              <a
+                class="qualification-card"
+                href={qualification.documentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Apri documento ${qualification.title}`}
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <article class="qualification-card">{cardContent}</article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-box">
+      <div>
+        <span class="section-label light">Documentazione</span>
+        <h2>Hai bisogno di verificare una qualifica?</h2>
+        <p>
+          Contattaci per ricevere informazioni sulle certificazioni, sulle
+          abilitazioni disponibili e sui servizi tecnici collegati.
+        </p>
+      </div>
+
+      <a href="/contatti/">Contattaci</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  .page-hero {
+    padding: 112px 0;
+    color: var(--white);
+    background:
+      radial-gradient(
+        circle at 82% 28%,
+        rgba(41, 184, 239, 0.25),
+        transparent 30%
+      ),
+      linear-gradient(135deg, var(--navy), #0a3d6b);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    align-items: end;
+    gap: 70px;
+  }
+
+  .page-hero span,
+  .section-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+
+  .page-hero h1 {
+    max-width: 940px;
+    margin-bottom: 24px;
+    font-size: clamp(46px, 6vw, 74px);
+    line-height: 1;
+    letter-spacing: -3px;
+  }
+
+  .page-hero p {
+    max-width: 730px;
+    margin-bottom: 0;
+    color: #cad8e7;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .hero-panel {
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-panel strong {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--white);
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .hero-panel p {
+    color: #d8edff;
+    font-size: 14px;
+  }
+
+  .iso-section {
+    padding: 105px 0;
+    background: var(--white);
+  }
+
+  .section-heading {
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: end;
+    gap: 70px;
+  }
+
+  .section-label {
+    color: var(--blue);
+  }
+
+  .section-label.light {
+    color: var(--cyan);
+  }
+
+  h2 {
+    margin-bottom: 0;
+    color: var(--navy);
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+  }
+
+  .section-heading p,
+  .sticky-heading p,
+  .cert-content p,
+  .qualification-copy p,
+  .cta-box p {
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .section-heading p {
+    margin-bottom: 4px;
+  }
+
+  .iso-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .iso-card,
+  .qualification-card {
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: inherit;
+    text-decoration: none;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      border-color 0.22s ease;
+  }
+
+  .iso-card:hover,
+  .qualification-card:hover,
+  .iso-card:focus-visible,
+  .qualification-card:focus-visible {
+    border-color: rgba(8, 120, 209, 0.35);
+    box-shadow: 0 18px 38px rgba(7, 24, 46, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .iso-card:focus-visible,
+  .qualification-card:focus-visible {
+    outline: 3px solid rgba(8, 120, 209, 0.25);
+    outline-offset: 3px;
+  }
+
+  .cert-image {
+    min-height: 185px;
+    padding: 28px;
+    display: grid;
+    place-items: center;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cert-image img,
+  .qualification-logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cert-content {
+    padding: 26px;
+  }
+
+  .cert-content h3,
+  .qualification-copy h3 {
+    margin-bottom: 12px;
+    color: var(--navy);
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .cert-content p,
+  .qualification-copy p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  .cert-content span,
+  .qualification-copy strong {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .qualifications-section {
+    padding: 105px 0;
+    background: var(--background);
+  }
+
+  .qualifications-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .sticky-heading {
+    position: sticky;
+    top: 126px;
+  }
+
+  .sticky-heading p {
+    margin: 22px 0 0;
+    font-size: 16px;
+  }
+
+  .qualification-list {
+    display: grid;
+    gap: 18px;
+  }
+
+  .qualification-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 28px;
+    align-items: center;
+    padding: 28px;
+  }
+
+  .qualification-number {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    color: #cad8e7;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .qualification-logo {
+    min-height: 120px;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .qualification-copy span {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .cta-section {
+    padding: 0 0 85px;
+    background: var(--background);
+  }
+
+  .cta-box {
+    padding: 58px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 60px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue), #035fa7);
+    border-radius: 16px;
+  }
+
+  .cta-box h2 {
+    margin-bottom: 18px;
+    color: var(--white);
+  }
+
+  .cta-box p {
+    max-width: 720px;
+    margin-bottom: 0;
+    color: #d8edff;
+  }
+
+  .cta-box a {
+    min-height: 52px;
+    padding: 0 27px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    background: var(--white);
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  @media (max-width: 950px) {
+    .hero-grid,
+    .section-heading,
+    .qualifications-grid,
+    .cta-box {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-grid,
+    .qualifications-grid {
+      gap: 42px;
+    }
+
+    .hero-panel {
+      max-width: 520px;
+    }
+
+    .iso-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sticky-heading {
+      position: static;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .page-hero {
+      padding: 75px 0;
+    }
+
+    .page-hero h1 {
+      font-size: 44px;
+      letter-spacing: -2px;
+    }
+
+    .iso-section,
+    .qualifications-section {
+      padding: 70px 0;
+    }
+
+    .qualification-card {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .qualification-logo {
+      min-height: 105px;
+    }
+
+    .cta-section {
+      padding-bottom: 70px;
+    }
+
+    .cta-box {
+      padding: 38px 24px;
+    }
+
+    .cta-box a {
+      width: 100%;
+    }
+  }
+</style>

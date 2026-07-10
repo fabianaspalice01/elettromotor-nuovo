@@ -1,0 +1,530 @@
+---
+import { designServices } from "../../data/progettazione";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Progettazione | Elettromotor"
+  description="Progettazione, consulenza tecnica e documentazione per sicurezza sul lavoro, certificazioni ISO, SOA, POS, DUVRI, DIRI e CPI."
+>
+  <section class="page-hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Servizi</span>
+
+        <h1>
+          Progettazione e consulenza
+          <strong>per documenti tecnici e sicurezza.</strong>
+        </h1>
+
+        <p>
+          Dalla valutazione dei rischi alla documentazione di cantiere, dalle
+          certificazioni ISO alle pratiche per la prevenzione incendi:
+          supportiamo aziende e attivita con un approccio tecnico e ordinato.
+        </p>
+
+        <a class="hero-button" href="/contatti/">
+          Richiedi consulenza
+        </a>
+      </div>
+
+      <aside class="hero-panel" aria-label="Progettistica 360 gradi">
+        <span>Progettistica 360</span>
+        <strong>Analisi, documentazione e conformità normativa.</strong>
+        <p>
+          Ogni servizio parte dall'esigenza reale del cliente e viene tradotto
+          in documenti, procedure e soluzioni chiare.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <div class="container intro-grid">
+      <div>
+        <span class="section-label">Progettistica 360°</span>
+        <h2>Partner tecnico per aziende, cantieri e attivita.</h2>
+      </div>
+
+      <p>
+        Il nostro team combina competenze tecniche, conoscenza normativa e
+        attenzione ai costi per creare soluzioni funzionali. Dal concept alla
+        documentazione finale, l'obiettivo e migliorare efficienza, sicurezza
+        e competitivita.
+      </p>
+    </div>
+  </section>
+
+  <section class="articles-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-label">Articoli</span>
+          <h2>Approfondimenti di progettazione.</h2>
+        </div>
+
+        <p>
+          Ogni scheda porta alla pagina completa del servizio, con dettagli,
+          attivita incluse e ambiti di intervento.
+        </p>
+      </div>
+
+      <div class="articles-grid">
+        {
+          designServices.map((service) => (
+            <a
+              class="article-card"
+              href={`/servizi/progettazione/${service.slug}/`}
+            >
+              <div
+                class="article-image"
+                style={`--article-image: url("${service.heroImage}")`}
+              >
+                <span>{service.number}</span>
+              </div>
+
+              <div class="article-content">
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <strong>
+                  Scopri di piu
+                  <span>+</span>
+                </strong>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="method-section">
+    <div class="container method-grid">
+      <div class="method-card">
+        <span>Metodo</span>
+        <strong>Un processo chiaro riduce errori e ritardi.</strong>
+      </div>
+
+      <div class="method-content">
+        <span class="section-label">Come lavoriamo</span>
+        <h2>Dati, norme e obiettivi prima della soluzione.</h2>
+        <p>
+          Ogni incarico viene organizzato raccogliendo informazioni, valutando
+          i requisiti e definendo una traccia operativa chiara per arrivare a
+          documenti utilizzabili e coerenti.
+        </p>
+
+        <ul>
+          <li>Analisi dell'attivita, del cantiere o dell'impianto.</li>
+          <li>Raccolta della documentazione disponibile.</li>
+          <li>Individuazione degli obblighi e delle priorita tecniche.</li>
+          <li>Redazione, revisione e supporto operativo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-box">
+      <div>
+        <span class="section-label light">Consulenza tecnica</span>
+        <h2>Vuoi impostare correttamente la documentazione?</h2>
+        <p>
+          Contattaci per descrivere la tua esigenza e programmare una
+          valutazione tecnica.
+        </p>
+      </div>
+
+      <a href="/contatti/" class="cta-button">
+        Contatta Elettromotor
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 120px 0;
+    color: var(--white);
+    background:
+      radial-gradient(
+        circle at 82% 25%,
+        rgba(41, 184, 239, 0.28),
+        transparent 30%
+      ),
+      linear-gradient(135deg, var(--navy), #0a477d);
+  }
+
+  .hero-grid,
+  .intro-grid,
+  .method-grid,
+  .cta-box {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 70px;
+  }
+
+  .hero-grid,
+  .cta-box {
+    align-items: end;
+  }
+
+  .eyebrow,
+  .section-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+
+  .section-label {
+    color: var(--blue);
+  }
+
+  .section-label.light {
+    color: var(--cyan);
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    max-width: 980px;
+    margin-bottom: 28px;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1;
+    letter-spacing: -3px;
+  }
+
+  h1 strong {
+    display: block;
+    color: var(--cyan);
+  }
+
+  .page-hero p {
+    max-width: 700px;
+    margin-bottom: 32px;
+    color: #cad8e7;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .hero-button,
+  .cta-button {
+    min-height: 52px;
+    padding: 0 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    background: var(--white);
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .hero-panel {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-panel span,
+  .method-card span {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .hero-panel strong,
+  .method-card strong {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--white);
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .hero-panel p {
+    margin: 0;
+    color: #d8edff;
+    font-size: 14px;
+  }
+
+  .intro-section,
+  .articles-section,
+  .method-section {
+    padding: 105px 0;
+  }
+
+  .intro-grid,
+  .method-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    color: var(--navy);
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+  }
+
+  .intro-grid > p,
+  .section-heading > p,
+  .method-content > p,
+  .article-card p,
+  .cta-box p {
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .intro-grid > p {
+    margin-bottom: 0;
+    font-size: 17px;
+  }
+
+  .articles-section,
+  .method-section {
+    background: var(--background);
+  }
+
+  .section-heading {
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: end;
+    gap: 60px;
+  }
+
+  .section-heading > p {
+    margin-bottom: 5px;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .article-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .article-card:hover,
+  .article-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(7, 24, 46, 0.12);
+  }
+
+  .article-card:focus-visible {
+    outline: 3px solid rgba(8, 120, 209, 0.25);
+    outline-offset: 3px;
+  }
+
+  .article-image {
+    position: relative;
+    min-height: 230px;
+    display: flex;
+    align-items: flex-end;
+    padding: 26px;
+    background:
+      linear-gradient(180deg, rgba(7, 24, 46, 0.05), rgba(7, 24, 46, 0.62)),
+      var(--article-image) center / cover no-repeat;
+  }
+
+  .article-image span {
+    color: var(--white);
+    font-size: 34px;
+    font-weight: 900;
+  }
+
+  .article-content {
+    min-height: 280px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-content h3 {
+    margin-bottom: 15px;
+    color: var(--navy);
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .article-card p {
+    font-size: 14px;
+  }
+
+  .article-content strong {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .article-content strong span {
+    color: var(--blue);
+    font-size: 20px;
+  }
+
+  .method-card {
+    min-height: 420px;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--white);
+    background:
+      linear-gradient(180deg, rgba(7, 24, 46, 0.15), rgba(7, 24, 46, 0.78)),
+      url("/images/progettazione-impianti-antincendio.jpg") center / cover
+        no-repeat;
+    border-radius: 16px;
+  }
+
+  .method-content p {
+    margin: 22px 0 28px;
+    font-size: 16px;
+  }
+
+  .method-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .method-content li {
+    position: relative;
+    padding: 14px 0 14px 30px;
+    border-bottom: 1px solid var(--border);
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.55;
+  }
+
+  .method-content li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+  }
+
+  .cta-section {
+    padding: 55px 0;
+  }
+
+  .cta-box {
+    grid-template-columns: 1.3fr 0.7fr;
+    align-items: center;
+    padding: 60px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue), #045c9f);
+    border-radius: 20px;
+  }
+
+  .cta-box h2 {
+    margin-bottom: 18px;
+    color: var(--white);
+  }
+
+  .cta-box p {
+    max-width: 680px;
+    margin-bottom: 0;
+    color: #d8edff;
+  }
+
+  .cta-button {
+    justify-self: end;
+  }
+
+  @media (max-width: 1000px) {
+    .hero-grid,
+    .intro-grid,
+    .section-heading,
+    .method-grid,
+    .cta-box {
+      grid-template-columns: 1fr;
+      gap: 42px;
+    }
+
+    .hero-panel {
+      max-width: 560px;
+    }
+
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .article-content {
+      min-height: auto;
+    }
+
+    .cta-button {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .page-hero {
+      padding: 75px 0;
+    }
+
+    h1 {
+      font-size: 46px;
+      letter-spacing: -2px;
+    }
+
+    h2 {
+      font-size: 36px;
+    }
+
+    .intro-section,
+    .articles-section,
+    .method-section {
+      padding: 75px 0;
+    }
+
+    .method-card {
+      min-height: 360px;
+      padding: 28px;
+    }
+
+    .cta-section {
+      padding: 25px 0;
+    }
+
+    .cta-box {
+      padding: 40px 25px;
+    }
+  }
+</style>

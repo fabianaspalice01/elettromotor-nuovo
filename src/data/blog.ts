@@ -7,6 +7,7 @@ export const articles = [
     title:
       "Sicurezza sul lavoro: cosa significano le sigle più frequenti RLS, ASPP e RSPP",
     seoTitle: "RLS, ASPP, RSPP: sigle della sicurezza sul lavoro",
+    heroImage: "/images/blog-sicurezza-lavoro-rls-aspp-rspp.png",
     description:
       "Conosci la differenza tra RLS, RSPP e ASPP? Le figure chiave della sicurezza sul lavoro in azienda, spiegate in modo semplice.",
     intro: [
@@ -22,6 +23,10 @@ export const articles = [
           "È una persona in possesso delle capacità e dei requisiti professionali di cui all'articolo 32, designata dal datore di lavoro, a cui risponde, per coordinare il servizio di prevenzione e protezione dai rischi. Le capacità e i requisiti professionali del RSPP sono individuati dall'art. 32, mentre i compiti del Servizio di Prevenzione e Protezione sono dettagliati all'art. 33.",
           "Il ruolo di responsabile può anche essere assegnato al Datore di Lavoro in caso di aziende con meno di 30 addetti, o di 200 quando non si tratta di industrie di produzione. I datori di lavoro in questo caso dovranno seguire corsi di formazione specifici.",
         ],
+        image: {
+          src: "/images/blog-sicurezza-lavoro-figure.png",
+          alt: "Documenti di prevenzione, caschi e dispositivi di protezione durante una riunione sulla sicurezza sul lavoro",
+        },
       },
       {
         title: "ASPP - Addetto al Servizio di Prevenzione e Protezione",
@@ -48,6 +53,7 @@ export const articles = [
     isoDate: "2026-06-04",
     title: "DVR antincendio, valutazione del rischio incendio, metodologia e normativa",
     seoTitle: "DVR antincendio: valutazione del rischio incendio",
+    heroImage: "/images/blog-dvr-antincendio-valutazione-rischio.png",
     description:
       "Cos'è il DVR antincendio, come si effettua la valutazione del rischio incendio e cosa prevede la normativa: la guida completa.",
     intro: [
@@ -67,6 +73,10 @@ export const articles = [
           "I Dispositivi di Protezione Individuale.",
           "Eventuali operazioni di manutenzione.",
         ],
+        image: {
+          src: "/images/blog-dvr-antincendio-valutazione-interna.png",
+          alt: "Valutazione del rischio incendio con checklist tecnica e dispositivi antincendio in ambiente aziendale",
+        },
       },
       {
         title: "Cosa prevede la normativa antincendio sui luoghi di lavoro?",
@@ -193,6 +203,10 @@ export const articles = [
           "È costituita da uno o più pressostati, da una o più elettropompe comandate solitamente da un quadro che permette lo scambio e l'alternanza nel caso di un gruppo gemellare, da un serbatoio di accumulo acqua e da un serbatoio a pressione, comunemente chiamato \"polmone\".",
           "La pompa serve a incrementare la pressione dell'acqua, il contenitore a pressione ha al suo interno una camera d'aria, il pressostato accende la pompa elettrica e il serbatoio serve ad accumulare l'acqua proveniente dalla rete idrica.",
         ],
+        image: {
+          src: "/images/blog-autoclave-impianto-tecnico.png",
+          alt: "Gruppo autoclave con elettropompe, serbatoio a pressione, tubazioni e quadro di comando in locale tecnico",
+        },
       },
       {
         title: "Autoclave, come funziona",
