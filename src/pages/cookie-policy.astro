@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Cookie Policy | Elettromotor"
+  description="Informativa sull'utilizzo dei cookie sul sito web di Elettromotor."
+>
+  <section class="page-hero">
+    <div class="container">
+      <span>Cookie</span>
+      <h1>Cookie Policy.</h1>
+      <p>
+        Informazioni su come questo sito utilizza i cookie e strumenti simili
+        durante la navigazione.
+      </p>
+    </div>
+  </section>
+
+  <section class="legal-section">
+    <div class="container legal-content">
+      <h2>Cosa sono i cookie</h2>
+      <p>
+        I cookie sono piccoli file di testo che i siti visitati inviano al
+        terminale dell'utente, dove vengono memorizzati per essere poi
+        ritrasmessi agli stessi siti alla visita successiva. Sono utilizzati
+        per far funzionare correttamente il sito, per raccogliere statistiche
+        di utilizzo in forma aggregata e per garantire una navigazione più
+        efficiente.
+      </p>
+
+      <h2>Cookie tecnici</h2>
+      <p>
+        Questo sito utilizza esclusivamente cookie tecnici, necessari al
+        corretto funzionamento delle pagine e alla fruizione dei servizi
+        offerti. Questi cookie non richiedono il consenso preventivo
+        dell'utente e non vengono utilizzati per finalità ulteriori rispetto
+        a quelle strettamente legate all'erogazione del servizio.
+      </p>
+
+      <h2>Cookie di terze parti</h2>
+      <p>
+        Il sito può includere contenuti o funzionalità fornite da servizi di
+        terze parti (ad esempio mappe o social network), che possono
+        installare propri cookie durante la navigazione. Elettromotor non ha
+        controllo diretto su tali cookie: per informazioni e per gestire le
+        relative preferenze si rimanda alle informative privacy dei rispettivi
+        fornitori.
+      </p>
+
+      <h2>Gestione dei cookie dal browser</h2>
+      <p>
+        È possibile gestire le preferenze relative ai cookie direttamente
+        all'interno del proprio browser e impedire, ad esempio, che terze
+        parti possano installarne. Tramite le impostazioni del browser è
+        inoltre possibile eliminare i cookie installati in precedenza,
+        incluso quello in cui viene eventualmente salvato il consenso
+        all'installazione di cookie da parte di questo sito. Le impostazioni
+        variano da browser a browser: le istruzioni si trovano tipicamente
+        nelle pagine di aiuto del browser utilizzato.
+      </p>
+
+      <h2>Titolare del trattamento</h2>
+      <p>
+        Titolare del trattamento è Elettromotor, con sede in Via Castel
+        Belvedere, 168/A, 80016 Marano di Napoli (NA). Per qualsiasi
+        richiesta è possibile scrivere a
+        <a href="mailto:info@elettromotor.net">info@elettromotor.net</a>.
+        Per informazioni sul trattamento dei dati personali consulta la
+        <a href="/privacy/">Privacy Policy</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  h1,
+  h2,
+  p {
+    margin-top: 0;
+  }
+
+  .page-hero {
+    padding: 90px 0 60px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--navy), #0a3d6b);
+  }
+
+  .page-hero span {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+
+  .page-hero h1 {
+    max-width: 780px;
+    margin-bottom: 18px;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+  }
+
+  .page-hero p {
+    max-width: 700px;
+    margin-bottom: 0;
+    color: #cad8e7;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .legal-section {
+    padding: 70px 0 100px;
+    background: var(--white);
+  }
+
+  .legal-content {
+    max-width: 820px;
+  }
+
+  .legal-content h2 {
+    margin-bottom: 12px;
+    color: var(--navy);
+    font-size: 24px;
+    letter-spacing: -0.6px;
+  }
+
+  .legal-content h2:not(:first-child) {
+    margin-top: 42px;
+  }
+
+  .legal-content p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .legal-content a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+
+  @media (max-width: 650px) {
+    .page-hero {
+      padding: 64px 0 44px;
+    }
+
+    .legal-section {
+      padding: 50px 0 70px;
+    }
+  }
+</style>

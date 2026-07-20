@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(astro dev *)",
+      "Bash(npx astro *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/azienda)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/contatti)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/certificazioni)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/blog)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/privacy/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/cookie-policy/)",
+      "Bash(curl -s -o /dev/null -w \"privacy: %{http_code}\\\\n\" http://localhost:4321/privacy/)",
+      "Bash(curl -s -o /dev/null -w \"cookie-policy: %{http_code}\\\\n\" http://localhost:4321/cookie-policy/)",
+      "Bash(curl -s http://localhost:4321/)"
+    ]
+  }
+}
